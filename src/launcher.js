@@ -61,8 +61,8 @@ var APP;
 function goTo(url,params){
     var locat=url;
     if(url.indexOf('.')!=-1){
-        let e=/https*:\/\/[^/]+/;
-        let start=url.match(e)[0];
+        var e=/https*:\/\/[^/]+/;
+        var start=url.match(e)[0];
         url=url.replace(e,'');
         url=start+url.replace(/\.[^?#]+/,'.js');//把后缀名改为js
     }
@@ -168,7 +168,7 @@ function prefetch(url,mode,params,creater){
         if(typeof params!=='undefined'&&(typeof params=='function'||typeof params=='object')){
             params=JSON.parse(JSON.stringify(params));
         }
-        let vi=createView(url,mode,creater);
+        var vi=createView(url,mode,creater);
         vi.params=params;
         return vi.dom;
     }else
@@ -242,7 +242,7 @@ function view(dom,url,mode,creater){
     this.onDom('animationend',view.animationend);
     this.onDom('webkitAnimationEnd',view.animationend);
 
-    for(let key in divFunction){
+    for(var key in divFunction){
         dom[key]=divFunction[key].bind(this);
     }
 }
@@ -404,7 +404,7 @@ view.getViewId= function(url){
  */
 view.getPath=function(url,href){//相对地址转换为绝对地址
     if(!href){
-        let a=document.createElement('a');
+        var a=document.createElement('a');
         a.href=url;//转换为绝对路径
         return a.href; 
     }
@@ -428,7 +428,7 @@ view.getPath=function(url,href){//相对地址转换为绝对地址
     var path=href.split('/');
     path.pop();
     var res=(com[0]=='')?[]:path.concat([]);
-    for(let i=0;i<com.length;i++){
+    for(var i=0;i<com.length;i++){
         if(com[i]=='..'){
             res.pop();
         }else if(com[i]!='.'){
